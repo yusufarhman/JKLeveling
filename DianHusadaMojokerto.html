@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STIKES Dian Husada - Menginspirasi Masa Depan</title>
+    <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIPNbWyrCQPPtbLvTQKSTVWCHVsN-IuzUsL8PnRKxtXZQ6XAkpmWATUqenVnffiHfQyzv7BVS6pZgLkzii6stspUX55Rmfdg8lQwuJ4Y2o8cvxm8qDIK5bta5iaT7FSzQZo8h-HQvAS34laikqDKA9EgiD7L59AwrBz4MhF6yxTM1-p7HwKhdnCr3KGU4/s320/WhatsApp%20Image%202024-10-13%20at%2019.58.24_waifu2x_photo_noise3_scale%20(2).png" type="image/png"> <!-- Ganti path/to/favicon.png dengan jalur file favicon Anda -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #0055a4;
+            --accent-color: #ffd700;
+            --text-color: #333;
+            --bg-color: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(0, 51, 102, 0.9);
+            padding: 0.5rem 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                display: none;
+            }
+
+            nav ul.active {
+                display: block;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"%3E%3Crect width="1600" height="900" fill="%23003366"%2F%3E%3Cpath d="M0 0l1600 900H0V0z" fill-opacity=".5" fill="%230055a4"%2F%3E%3C%2Fsvg%3E');
+            background-size: cover;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+
+        section {
+            margin-bottom: 6rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .sejarah-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .sejarah-text {
+            flex: 1;
+        }
+
+        .sejarah-image {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sejarah-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .sejarah-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--accent-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--primary-color);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--primary-color);
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--primary-color);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--primary-color) transparent transparent;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .buildings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .building {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .building:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .building img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .building-info {
+            padding: 1.5rem;
+        }
+
+        .building-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .video-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .facilities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .facility {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .facility:hover {
+            transform: translateY(-5px);
+        }
+
+        .facility i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .facility h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .testimonials {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial {
+            padding: 2rem;
+        }
+
+        .testimonial-content {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .sejarah-content {
+                flex-direction: column;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid var(--primary-color);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--primary-color) transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Aini Hilda Muliana</div>
+            <ul>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#sejarah">Sejarah</a></li>
+                <li><a href="#bangunan">Bangunan</a></li>
+                <li><a href="#video">Video</a></li>
+                <li><a href="#fasilitas">Fasilitas</a></li>
+                <li><a href="#testimonial">Testimonial</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+    
+    <section id="beranda" class="hero parallax">
+        <div class="hero-content">
+            <h1>Selamat Datang di STIKES Dian Husada Mojokerto</h1>
+            <p>Membentuk Generasi Unggul untuk Masa Depan Cemerlang</p>
+            <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+        </div>
+    </section>
+
+    <main>
+        <section id="sejarah">
+            <div class="logo-container">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIPNbWyrCQPPtbLvTQKSTVWCHVsN-IuzUsL8PnRKxtXZQ6XAkpmWATUqenVnffiHfQyzv7BVS6pZgLkzii6stspUX55Rmfdg8lQwuJ4Y2o8cvxm8qDIK5bta5iaT7FSzQZo8h-HQvAS34laikqDKA9EgiD7L59AwrBz4MhF6yxTM1-p7HwKhdnCr3KGU4/s320/WhatsApp%20Image%202024-10-13%20at%2019.58.24_waifu2x_photo_noise3_scale%20(2).png" alt="Logo" class="logo-img"> <!-- Ganti link-ke-logo.png dengan URL logo Anda -->
+            <h2>Sejarah Kampus</h2>
+            <div class="sejarah-content">
+                <div class="sejarah-text">
+                    <p>Stikes Dian Husada Mojokerto didirikan pada tahun 2006. Landasan pendirian Sekolah Tinggi Ilmu Kesehatan (Stikes) Dian Husada Mojokerto ini disamping karena tuntutan masyarakat yang meningkat terhadap pelayanan keperawatan profesional dan merujuk pada kebijaksanaan pengembangan tenaga kesehatan di Indonesia seperti tercantum dalam Sistem Kesehatan Nasional (SKN).</p>
+                    <p>Stikes Dian Husada Mojokerto merupakan perguruan tinggi swasta yang bergerak di bidang pendidikan kesehatan. Stikes Dian Husada Mojokerto memiliki visi untuk menjadi lembaga pendidikan kesehatan yang unggul dalam menghasilkan tenaga kesehatan yang profesional, berakhlak mulia, dan berwawasan global.</p>
+                    <p>Disamping itu dilihat dari gambaran kedudukan dari segi geopolitik turut mengembangkan sumber daya manusia, khususnya keperawatan dan Kebidanan di Mojokerto sekitarnya, Jawa Timur, bahkan kawasan Indonesia Timur, maka peran Stikes Dian Husada sangat diperlukan. Hal ini mengingat Stikes Dian Husada sebagai pendidikan terpandang dengan sumber daya manusia (tenaga medis) yang sangat memadai dan siap menunjang pelaksanaan Program Pendidikan Tinggi Keperawatan dan Kebidanan. Dengan latar belakang pendidikan tinggi diharapkan dapat memberikan pengalaman belajar pada peserta didik untuk menumbuhkan dan membina sikap serta ketrampilan profesional yang diperlukan sebagai seorang “perawat profesional “.</p>
+                </div>
+                <div class="sejarah-image">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyXdcldwcg93okA0LY7XcphAKMd7k4X5Vv68nqA8Od0KXnLUc1j1LXsHy65oG1ljA0FCz921YVUDIIopsrcyod32F0OutAiZgdgeGxSsQtjtWDPAf0uiQD9Zx7476Wes3uSWnW9y7Uj-yJFQlmoTZuCshuHt2p_RR38ML7uTxmg3q4KePdMG4ABVdeJ1Q/s320/WhatsApp%20Image%202024-10-15%20at%2016.52.25%20(1).jpeg" width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23333'%3EGambar Sejarah Kampus%3C/text%3E%3C/svg%3E" alt="Sejarah Kampus">
+                </div>
+            </div>
+            <style>
+                #sejarah {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 40px 20px;
+                    font-family: Arial, sans-serif;
+                }
+                .logo-container {
+                text-align: center; /* Memusatkan logo */
+                margin-bottom: 20px; /* Jarak antara logo dan judul */
+                }
+                .logo-img {
+                width: 100px; /* Sesuaikan ukuran logo */
+                height: auto;
+                }
+                .sejarah-text p {
+                    margin-bottom: 20px;
+                    line-height: 1.8;
+                    text-align: justify;
+                    color: #444;
+                    font-size: 1em;
+                    hyphens: auto;
+                    word-spacing: -0.05em;
+                }
+                @media (min-width: 768px) {
+                .sejarah-content {
+                flex-direction: row;
+                justify-content: space-between;
+                }
+                
+                .sejarah-text {
+                flex-basis: 60%;
+                margin-right: 30px;
+                margin-bottom: 0;
+                }
+                
+                .sejarah-image {
+                flex-basis: 40%;
+                }
+                }
+            </style>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2001</h3>
+                        <p>Pendirian AKPER Dian Husada Mojokerto.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>2006</h3>
+                        <p>Pendirian STIKES Dian Husada Mojokerto.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2016</h3>
+                        <p>Perayaan 10 tahun STIKES Dian Husada.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>2023</h3>
+                        <p>Telah terakreditasi berberapa program studi oleh LAMPT-Kes.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2024</h3>
+                        <p>Perayaan 20 tahun STIKES Dian Husada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bangunan">
+            <h2>Bangunan Kampus</h2>
+            <div class="buildings">
+                <div class="building">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyXdcldwcg93okA0LY7XcphAKMd7k4X5Vv68nqA8Od0KXnLUc1j1LXsHy65oG1ljA0FCz921YVUDIIopsrcyod32F0OutAiZgdgeGxSsQtjtWDPAf0uiQD9Zx7476Wes3uSWnW9y7Uj-yJFQlmoTZuCshuHt2p_RR38ML7uTxmg3q4KePdMG4ABVdeJ1Q/s1280/WhatsApp%20Image%202024-10-15%20at%2016.52.25%20(1).jpeg" 
+                        alt="Gedung Rektorat" 
+                        width="250" 
+                        height="200">
+                    <div class="building-info">
+                        <h3>Gedung Rektorat</h3>
+                        <p>Pusat administrasi dan kepemimpinan universitas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="building">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhtBSNvKAg0z8Dvjly5h1esfUKU0qyNI5YFZZfFKZ9Gc9F2tUPgw1tgK_3HthrHQt9xz7z9Ahypmg-C8xvP9NwnMhKabpZRYDhri7LE0HvLqB22WQb9Sm3JJXSuPJdBZA5ZuphZMuSV0_OoA1SAVzi1qSkp_z0awAAUD31jDrrOI5ddbYjcwcQ6zkpPAg/s320/WhatsApp%20Image%202024-10-15%20at%2016.52.26%20(2).jpeg" 
+                    alt="Perpustakaan" 
+                    width="250" 
+                    height="200">
+                <div class="building-info">
+                    <h3>Perpustakaan</h3>
+                    <p>Kampus ini memiliki perpustakaan yang menyediakan berbagai literatur, buku teks, jurnal ilmiah, dan sumber referensi lainnya dalam bidang kesehatan. Fasilitas ini dirancang untuk mendukung kegiatan belajar mahasiswa dan penelitian dosen, serta dilengkapi dengan ruang baca yang nyaman, ber-AC dan akses internet.</p>
+                </div>
+            </div>
+            <div class="building">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjgJepuREBxikdX2iCR8ltntff3RNo6jsH7b9m0Ob3hv0d0Ml0RaplXvpw1C22hqpS2VL7zJ6udgsazxr0pfhjxMRdvImY1L9t5xF81NIamgd_wHhWoSzdPAIm4YM-5l-reVIoLRGR69Azoq5ik5Ws2diY0DxEeA8N8TCLQnN8q7OTPnUX8z0kNUYABLw/s320/WhatsApp%20Image%202024-10-15%20at%2016.52.26%20(1).jpeg" 
+                    alt="Perpustakaan" 
+                    width="250" 
+                    height="200">
+                <div class="building-info">
+                    <h3>Ruang Perkuliahan</h3>
+                    <p>Kampus mempunyai 8 ruang kelas dilengkapi dengan ruang kelas yang nyaman, ber-AC, dan didukung dengan teknologi pembelajaran modern seperti proyektor dan sistem audio visual. Ini memungkinkan proses pembelajaran berjalan efektif.</p>
+                </div>
+            </div>
+            <div class="building">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgs1h6uHZL2NytWnhiS4I3BBQq8-nM1YRLnRFqb1CK8jBntcHmjUV8WD1N38zkn7szT0foBGV3sm3CwncSYUo7-ElXYfcgQJ0F0pChmdlm3y36fV39QuLaCK9WI15T-DNto_JU3E0jnP2n24fRrF837bCU4BR_4YSp0q3szEYGpssJcLAWCASluKZ5CV4/s320/WhatsApp%20Image%202024-10-15%20at%2017.08.32.jpeg" 
+                    alt="Aula Kampus" 
+                    width="250" 
+                    height="200">
+                <div class="building-info">
+                    <h3>Aula Kampus</h3>
+                    <p> Aula di kampus digunakan untuk berbagai acara kampus, termasuk seminar, workshop, kegiatan organisasi mahasiswa, dan acara resmi lainnya. Aula ini dilengkapi dengan sistem audio visual yang lengkap.</p>
+                </div>
+            </div>
+                <div class="building">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJ0ujrUF2ER_oej2x5b9dcz0OSQiB8scSoNmsjdfsbaAmJ9oWI50OJ3OMWLuuC7BKQIhnQsAAZP5Ze2-nDDNK38kDw0RJUC6BBCxmLAVS-AF7LOkBdOoY614GPLmRuD_ZbgtJlu6i3P0YV-ZpJ5E3okC3PXdDaRCZiLq-GwjnRMc6P_QeRpb3cYi0Oex4/s320/WhatsApp%20Image%202024-10-15%20at%2016.52.27.jpeg" 
+                    alt="Laboratorium" 
+                    width="250" 
+                    height="200">
+                    <div class="building-info">
+                        <h3>Laboratorium</h3>
+                        <p> STIKES Dian Husada dilengkapi dengan berbagai laboratorium yang mendukung praktikum, seperti laboratorium Gawat darurat , kebidanan , KMB , dan laboratorium anatomi . Setiap laboratorium dirancang untuk memberikan pengalaman praktis dan mendukung pemahaman teoritis pelajar dalam melakukan berbagai prosedur medis.</p>
+                    </div>
+                </div>
+            <div class="building">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgR172U2PbwTLQ34E1n23VvPpt4-TE5DDA2ouxES8lpZ765_s9KxXMt7TTaX0PJ2KTa7BXz3rT-WmeVP5q9EhhOifY1Rn8EvbJzlFiG8zTF6EGKoFs6xwFc6ZSOmT6EQFRhTaOll8CwekqFylhWpi9c0swOTBHd75L6X9ZUJjzP-bChfZ-aPDbvNW5kbCs/s320/WhatsApp%20Image%202024-10-15%20at%2017.31.05.jpeg" 
+                        alt="Rumah Sakit Kampus" 
+                        width="250" 
+                        height="200">
+                    <div class="building-info">
+                        <h3>Rumah sakit kampus</h3>
+                        <p> STIKES Dian Husada juga memiliki Rumah Sakit yang memberikan layanan kesehatan bagi mahasiswa, dosen, dan karyawan kampus. Rumah sakit ini berfungsi sebagai tempat praktek bagi mahasiswa di bawah bimbingan dosen untuk melakukan praktik secara langsung.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!DOCTYPE html>
+        <html lang="id">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Profil Kampus</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+        
+                body {
+                    font-family: 'Poppins', sans-serif;
+                    line-height: 1.6;
+                    background-color: #f4f4f4;
+                    color: #333;
+                }
+        
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 20px;
+                }
+        
+                h2 {
+                    text-align: center;
+                    margin-bottom: 40px;
+                    color: #2c3e50;
+                    font-size: 2.5rem;
+                    position: relative;
+                }
+        
+                h2::after {
+                    content: '';
+                    display: block;
+                    width: 50px;
+                    height: 3px;
+                    background-color: #3498db;
+                    margin: 10px auto;
+                }
+        
+                /* Fasilitas Styles */
+                #fasilitas {
+                    background-color: #fff;
+                    padding: 60px 0;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                }
+        
+                .facilities {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 30px;
+                }
+        
+                .facility {
+                    text-align: center;
+                    padding: 30px;
+                    background-color: #f8f9fa;
+                    border-radius: 10px;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+        
+                .facility:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                }
+        
+                .facility i {
+                    font-size: 3rem;
+                    color: #3498db;
+                    margin-bottom: 15px;
+                }
+        
+                .facility h3 {
+                    margin-bottom: 10px;
+                    color: #2c3e50;
+                }
+        
+                /* Video Styles */
+                .video-section {
+                    padding: 60px 0;
+                    background-color: #ecf0f1;
+                }
+        
+                .video-container {
+                    max-width: 800px;
+                    margin: 0 auto;
+                }
+        
+                .video-description {
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                    text-align: center;
+                    color: #34495e;
+                }
+        
+                .video-wrapper {
+                    position: relative;
+                    padding-bottom: 56.25%;
+                    height: 0;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                }
+        
+                .video-wrapper iframe {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                }
+        
+                @media (max-width: 768px) {
+                    .facilities {
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    }
+                }
+            </style>
+        
+        <section id="video1" class="video-section">
+            <h2>Profil Kampus</h2>
+            <div class="video-container">
+                <p class="video-description">Video Profil Kampus</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/k84tuDNqqMY" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+        
+        <section id="video2" class="video-section">
+            <h2>Review Buku Kesehatan</h2>
+            <div class="video-container">
+                <p class="video-description">Video Review Buku Kesehatan</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/METMzQvpSLI" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+        
+        <section id="fasilitas">
+            <h2>Fasilitas Kampus</h2>
+            <div class="facilities">
+                <div class="facility">
+                    <i class="fas fa-wifi"></i>
+                    <h3>Wi-Fi Gratis</h3>
+                    <p>Akses internet cepat di seluruh area kampus.</p>
+                </div>
+                <div class="facility">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Fasilitas Olahraga</h3>
+                    <p>Lapangan dan gedung olahraga modern.</p>
+                </div>
+                <div class="facility">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Kantin</h3>
+                    <p>Beragam pilihan makanan sehat dan lezat.</p>
+                </div>
+                <div class="facility">
+                    <i class="fas fa-hospital"></i>
+                    <h3>Rumah Sakit Kampus</h3>
+                    <p>Fasilitas kesehatan lengkap untuk civitas akademika.</p>
+                </div>
+                <div class="facility">
+                    <i class="fas fa-flask"></i>
+                    <h3>Laboratorium</h3>
+                    <p>Fasilitas penelitian dan praktikum lengkap.</p>
+                </div>
+                <div class="facility">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Aula Kelas</h3>
+                    <p>Ruang pertemuan besar untuk kuliah umum dan seminar.</p>
+                </div>
+                <div class="facility">
+                    <i class="fas fa-school"></i>
+                    <h3>Ruang Kelas</h3>
+                    <p>Ruang belajar nyaman dengan peralatan modern.</p>
+                </div>
+                <div class="facility">
+                    <i class="fas fa-book-reader"></i>
+                    <h3>Perpustakaan</h3>
+                    <p>Koleksi buku dan sumber daya digital yang luas.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="testimonial" class="testimonials">
+            <h2>Apa Kata Mereka</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p class="testimonial-content">" STIKES Dian Husada memberikan pengalaman belajar yang luar biasa. Fasilitas modern dan dosen berkualitas membuat saya siap menghadapi dunia kerja."</p>
+                    <p class="testimonial-author">- Ani Santoso, Alumni 2020</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- New Map Section -->
+        <section id="lokasi">
+            <h2>Lokasi Kampus</h2>
+            <div class="map-container">
+                <iframe 
+                    width="100%" 
+                    height="450" 
+                    frameborder="0" 
+                    style="border:0" 
+                    src="https://maps.google.com/maps?q=Stikes+dian+husada+mojokerto&amp;t=k&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+        
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024 STIKES Dian Husada Mojokerto. Hak Cipta Dilindungi.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </footer>
+        
+        <script>
+            // Toggle mobile menu
+            function toggleMenu() {
+                const menuToggle = document.querySelector('.hamburger');
+                const menu = document.querySelector('nav ul');
+                menuToggle.classList.toggle('active');
+                menu.classList.toggle('active');
+            }
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                header.classList.toggle('scrolled', window.scrollY > 0);
+            });
+        
+            // Parallax effect
+            window.addEventListener('scroll', function() {
+                const parallax = document.querySelector('.parallax');
+                let scrollPosition = window.pageYOffset;
+                parallax.style.backgroundPositionY = scrollPosition * 0.7 + 'px';
+            });
+        
+            // Animate elements on scroll
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+        
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.building, .facility, .timeline-item');
+                elements.forEach(element => {
+                    if (isInViewport(element)) {
+                        element.style.animation = 'fadeInUp 1s ease forwards';
+                    }
+                });
+            }
+        
+            window.addEventListener('scroll', animateOnScroll);
+            window.addEventListener('load', animateOnScroll);
+        
+            // Simple testimonial slider
+            const testimonials = [
+                {
+                    content: "STIKES Dian Husada Mojokerto memberikan pengalaman belajar yang luar biasa. Fasilitas modern dan dosen berkualitas membuat saya siap menghadapi dunia kerja.",
+                    author: "Ani Santoso, Alumni 2020"
+                },
+                {
+                    content: "Saya bangga menjadi bagian dari STIKES Dian Husada Mojokerto. Lingkungan akademik yang inspiratif dan kesempatan networking yang luas telah membuka banyak peluang untuk karir saya.",
+                    author: "Budi Prakoso, Alumni 2018"
+                },
+                {
+                    content: "Program pertukaran pelajar di Universitas Impian membuka wawasan saya tentang pendidikan global. Pengalaman yang tak ternilai!",
+                    author: "Citra Dewi, Mahasiswa Tingkat 3"
+                }
+            ];
+        
+            let currentTestimonial = 0;
+        
+            function changeTestimonial() {
+                const testimonialElement = document.querySelector('.testimonial');
+                testimonialElement.style.opacity = 0;
+                
+                setTimeout(() => {
+                    testimonialElement.innerHTML = `
+                        <p class="testimonial-content">"${testimonials[currentTestimonial].content}"</p>
+                        <p class="testimonial-author">- ${testimonials[currentTestimonial].author}</p>
+                    `;
+                    testimonialElement.style.opacity = 1;
+                    
+                    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                }, 500);
+            }
+        
+            setInterval(changeTestimonial, 5000);
+        </script>
+        </body>
+        </html>
