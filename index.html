@@ -441,7 +441,8 @@ nav ul {
             </div>
         </div>
     </section>
-    <script>
+<script>
+
 function calculateWinRate() {
     const totalMatches = parseInt(document.getElementById('totalMatches').value);
     const totalWins = parseInt(document.getElementById('totalWins').value);
@@ -477,10 +478,8 @@ function calculateWinRate() {
         return;
     }
 
-    // Hitung jumlah kemenangan tambahan yang diperlukan
-    const requiredWins = Math.ceil(
-        (targetWR * totalMatches - 100 * totalWins) / (100 - targetWR)
-    );
+    // Perhitungan yang lebih akurat untuk kemenangan berturut-turut
+    const neededWins = calculateRequiredConsecutiveWins(totalMatches, totalWins, targetWR);
 
     // Tampilkan hasil
     document.getElementById('result').innerHTML = `
@@ -497,12 +496,41 @@ function calculateWinRate() {
             </div>
             <div class="text-center">
                 <p class="text-lg">Anda membutuhkan</p>
-                <p class="text-3xl font-bold text-yellow-400 my-2">${requiredWins}</p>
+                <p class="text-3xl font-bold text-yellow-400 my-2">${neededWins}</p>
                 <p class="text-lg">kemenangan berturut-turut</p>
             </div>
         </div>
     `;
 }
+
+function calculateRequiredConsecutiveWins(totalMatches, totalWins, targetWR) {
+    // Metode pencarian biner untuk menemukan jumlah kemenangan yang diperlukan
+    let left = 0;
+    let right = totalMatches * 2; // Batasan atas yang masuk akal
+
+    while (left <= right) {
+        const consecutiveWins = Math.floor((left + right) / 2);
+        
+        // Simulasi total pertandingan dan kemenangan baru
+        const newTotalMatches = totalMatches + consecutiveWins;
+        const newTotalWins = totalWins + consecutiveWins;
+        
+        const newWinRate = (newTotalWins / newTotalMatches) * 100;
+        
+        if (Math.abs(newWinRate - targetWR) < 0.01) {
+            return consecutiveWins;
+        }
+        
+        if (newWinRate < targetWR) {
+            left = consecutiveWins + 1;
+        } else {
+            right = consecutiveWins - 1;
+        }
+    }
+    
+    return Math.ceil(left);
+}
+    
 </script>
 
 
