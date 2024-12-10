@@ -397,7 +397,7 @@ nav ul {
                         inputmode="numeric" 
                         id="totalMatches" 
                         class="w-full bg-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-500 outline-none text-white" 
-                        placeholder="Contoh: 223"
+                        placeholder="Contoh: 900"
                         oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                         maxlength="5"
                     >
@@ -410,9 +410,9 @@ nav ul {
                         inputmode="numeric" 
                         id="totalWins" 
                         class="w-full bg-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-500 outline-none text-white" 
-                        placeholder="Contoh: 54"
+                        placeholder="Contoh: 78"
                         oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateWins();"
-                        maxlength="5"
+                        maxlength="3"
                     >
                 </div>
                 <!-- Win Rate Total yang Anda Inginkan -->
@@ -423,7 +423,7 @@ nav ul {
                         inputmode="numeric" 
                         id="targetWR" 
                         class="w-full bg-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-500 outline-none text-white" 
-                        placeholder="Contoh: 70"
+                        placeholder="Contoh: 80"
                         oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateTargetWR();"
                         maxlength="3"
                     >
@@ -446,17 +446,17 @@ nav ul {
 // Fungsi untuk menghitung Win Rate
 function calculateWinRate() {
     const totalMatches = parseInt(document.getElementById('totalMatches').value);
-    const totalWins = parseInt(document.getElementById('totalWins').value);
+    const totalWinsPercentage = parseFloat(document.getElementById('totalWins').value);
     const targetWR = parseInt(document.getElementById('targetWR').value);
 
     // Validasi input
-    if (!totalMatches || totalMatches === 0) {
+    if (!totalMatches || totalMatches <= 0) {
         document.getElementById('result').innerHTML = '<span class="text-red-500">Total pertandingan harus lebih dari 0</span>';
         return;
     }
 
-    if (totalWins < 0 || totalWins > totalMatches) {
-        document.getElementById('result').innerHTML = '<span class="text-red-500">Total kemenangan harus antara 0 dan total pertandingan</span>';
+    if (!totalWinsPercentage || totalWinsPercentage < 0 || totalWinsPercentage > 100) {
+        document.getElementById('result').innerHTML = '<span class="text-red-500">Win rate saat ini harus di antara 0-100</span>';
         return;
     }
 
@@ -465,7 +465,10 @@ function calculateWinRate() {
         return;
     }
 
-    // Hitung current win rate
+    // Hitung jumlah kemenangan saat ini
+    const totalWins = Math.round((totalWinsPercentage / 100) * totalMatches);
+
+    // Hitung win rate saat ini
     const currentWR = (totalWins / totalMatches) * 100;
 
     // Cek apakah target sudah tercapai
@@ -509,17 +512,13 @@ function calculateRequiredConsecutiveWins(totalMatches, totalWins, targetWR) {
     // Hitung win rate yang diinginkan dalam bentuk desimal
     const targetWRDecimal = targetWR / 100;
 
-    // Hitung jumlah total kemenangan yang diperlukan untuk mencapai target win rate
-    const totalWinsNeeded = Math.ceil(targetWRDecimal * (totalMatches + totalWins) / (1 - targetWRDecimal));
-
-    // Hitung jumlah kemenangan berturut-turut yang diperlukan
-    const neededWins = totalWinsNeeded - totalWins;
+    // Rumus untuk menghitung kemenangan berturut-turut
+    const neededWins = Math.ceil((targetWRDecimal * totalMatches - totalWins) / (1 - targetWRDecimal));
 
     // Pastikan hasilnya tidak negatif
-    return Math.max(0, neededWins); // Jika hasilnya negatif, berarti target sudah tercapai
-}
-</script>
-
+    return Math.max(0, neededWins);
+    }
+    </script>
     <script>
         const hamburgerBtn = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
