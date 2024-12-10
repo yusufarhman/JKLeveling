@@ -444,82 +444,85 @@ nav ul {
     </section>
     
     <script>
-    function validateWins() {
-        const totalMatches = parseInt(document.getElementById('totalMatches').value) || 0;
-        const totalWins = parseInt(document.getElementById('totalWins').value) || 0;
-        
-        if (totalWins > totalMatches) {
-            document.getElementById('totalWins').value = totalMatches;
-        }
+function validateWins() {
+    const totalMatches = parseInt(document.getElementById('totalMatches').value) || 0;
+    const totalWins = parseInt(document.getElementById('totalWins').value) || 0;
+    
+    if (totalWins > totalMatches) {
+        document.getElementById('totalWins').value = totalMatches;
     }
-    
-    function validateTargetWR() {
-        const targetWR = parseInt(document.getElementById('targetWR').value) || 0;
-        if (targetWR > 100) {
-            document.getElementById('targetWR').value = 100;
-        }
+}
+
+function validateTargetWR() {
+    const targetWR = parseInt(document.getElementById('targetWR').value) || 0;
+    if (targetWR > 100) {
+        document.getElementById('targetWR').value = 100;
     }
+}
+
+function calculateWinRate() {
+    const totalMatches = parseInt(document.getElementById('totalMatches').value);
+    const totalWins = parseInt(document.getElementById('totalWins').value);
+    const targetWR = parseInt(document.getElementById('targetWR').value);
+
+    // Validasi input
+    if (!totalMatches || totalMatches === 0) {
+        document.getElementById('result').innerHTML = '<span class="text-red-500">Total pertandingan harus lebih dari 0</span>';
+        return;
+    }
+
+    if (!totalWins && totalWins !== 0) {
+        document.getElementById('result').innerHTML = '<span class="text-red-500">Masukkan total kemenangan</span>';
+        return;
+    }
+
+    if (!targetWR) {
+        document.getElementById('result').innerHTML = '<span class="text-red-500">Masukkan target win rate</span>';
+        return;
+    }
+
+    if (totalWins > totalMatches) {
+        document.getElementById('result').innerHTML = '<span class="text-red-500">Total kemenangan tidak boleh lebih dari total pertandingan</span>';
+        return;
+    }
+
+    const currentWR = (totalWins / totalMatches) * 100;
     
-    function calculateWinRate() {
-        const totalMatches = parseInt(document.getElementById('totalMatches').value);
-        const totalWins = parseInt(document.getElementById('totalWins').value);
-        const targetWR = parseInt(document.getElementById('targetWR').value);
-    
-        // Validasi input
-        if (!totalMatches || totalMatches === 0) {
-            document.getElementById('result').innerHTML = '<span class="text-red-500">Total pertandingan harus lebih dari 0</span>';
-            return;
-        }
-    
-        if (!totalWins && totalWins !== 0) {
-            document.getElementById('result').innerHTML = '<span class="text-red-500">Masukkan total kemenangan</span>';
-            return;
-        }
-    
-        if (!targetWR) {
-            document.getElementById('result').innerHTML = '<span class="text-red-500">Masukkan target win rate</span>';
-            return;
-        }
-    
-        if (totalWins > totalMatches) {
-            document.getElementById('result').innerHTML = '<span class="text-red-500">Total kemenangan tidak boleh lebih dari total pertandingan</span>';
-            return;
-        }
-    
-        const currentWR = (totalWins / totalMatches) * 100;
-        
-        if (currentWR >= targetWR) {
-            document.getElementById('result').innerHTML = `
-                <div class="p-4 bg-green-600/20 rounded-lg">
-                    <p class="text-green-400">Win Rate Anda sudah ${currentWR.toFixed(1)}%</p>
-                    <p class="text-sm mt-2">Selamat! Anda telah mencapai target</p>
-                </div>
-            `;
-            return;
-        }
-    
-        const requiredWins = Math.ceil((targetWR * totalMatches - totalWins * 100) / (100 - targetWR));
-        
+    // Jika win rate saat ini sudah melebihi target
+    if (currentWR >= targetWR) {
         document.getElementById('result').innerHTML = `
-            <div class="space-y-2 p-4 bg-yellow-500/20 rounded-lg">
-                <div class="grid grid-cols-2 gap-4 mb-4">
-                    <div class="text-center">
-                        <p class="text-sm text-gray-400">Win Rate Saat Ini</p>
-                        <p class="text-xl font-bold text-yellow-400">${currentWR.toFixed(1)}%</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-sm text-gray-400">Target Win Rate</p>
-                        <p class="text-xl font-bold text-yellow-400">${targetWR}%</p>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <p class="text-lg">Anda membutuhkan</p>
-                    <p class="text-3xl font-bold text-yellow-400 my-2">${requiredWins}</p>
-                    <p class="text-lg">kemenangan berturut-turut</p>
-                </div>
+            <div class="p-4 bg-green-600/20 rounded-lg">
+                <p class="text-green-400">Win Rate Anda sudah ${currentWR.toFixed(1)}%</p>
+                <p class="text-sm mt-2">Selamat! Anda telah mencapai target</p>
             </div>
         `;
+        return;
     }
+
+    // Perhitungan kemenangan yang dibutuhkan
+    const requiredTotalWins = Math.ceil((targetWR * totalMatches) / 100);
+    const requiredWins = requiredTotalWins - totalWins;
+    
+    document.getElementById('result').innerHTML = `
+        <div class="space-y-2 p-4 bg-yellow-500/20 rounded-lg">
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="text-center">
+                    <p class="text-sm text-gray-400">Win Rate Saat Ini</p>
+                    <p class="text-xl font-bold text-yellow-400">${currentWR.toFixed(1)}%</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-sm text-gray-400">Target Win Rate</p>
+                    <p class="text-xl font-bold text-yellow-400">${targetWR}%</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <p class="text-lg">Anda membutuhkan</p>
+                <p class="text-3xl font-bold text-yellow-400 my-2">${requiredWins}</p>
+                <p class="text-lg">kemenangan berturut-turut</p>
+            </div>
+        </div>
+    `;
+}
     </script>
     
     <script>
