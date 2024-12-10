@@ -486,7 +486,7 @@ function validateTargetWR() {
         return;
     }
 
-    const currentWR = (totalWins / totalMatches) * 100;
+    const currentWR = totalWins;
 
     if (currentWR >= targetWR) {
         document.getElementById('result').innerHTML = `
