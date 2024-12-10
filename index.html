@@ -457,7 +457,7 @@ nav ul {
     const targetWR = parseInt(document.getElementById('targetWR').value) || 0;
     if (targetWR > 100) {
         document.getElementById('targetWR').value = 100;
-     }
+     } 
     }
 
     function calculateWinRate() {
@@ -501,8 +501,9 @@ nav ul {
     }
 
     // Perhitungan kemenangan yang dibutuhkan
-    const requiredTotalWins = Math.ceil((targetWR * totalMatches) / 100);
-    const requiredWins = requiredTotalWins - totalWins;
+    const requiredWins = Math.ceil(
+        (targetWR * totalMatches - totalWins * 100) / (100 - targetWR)
+    );
     
     document.getElementById('result').innerHTML = `
         <div class="space-y-2 p-4 bg-yellow-500/20 rounded-lg">
@@ -523,7 +524,7 @@ nav ul {
             </div>
         </div>
     `;
-  }
+    }
     </script>
     
     <script>
