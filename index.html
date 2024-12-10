@@ -499,6 +499,9 @@ function validateTargetWR() {
     }
 
     // Rumus perhitungan jumlah kemenangan yang dibutuhkan
+    const totalWins = Math.floor((currentWR / 100) * totalMatches);
+
+    // Menghitung jumlah kemenangan yang diperlukan
     const requiredWins = Math.ceil(
     (targetWR * totalMatches - 100 * totalWins) / (100 - targetWR)
     );
