@@ -486,19 +486,18 @@ function calculateWinRate() {
         return;
     }
 
-    // Hitung current win rate
-    const currentWR = Math.floor((totalWins / 100) * totalMatches);
+const totalWins = Math.floor((currentWR / 100) * totalMatches);
 
-
-    if (currentWR >= targetWR) {
-        document.getElementById('result').innerHTML = `
-            <div class="p-4 bg-green-600/20 rounded-lg">
-                <p class="text-green-400">Win Rate Anda sudah ${currentWR.toFixed(2)}%</p>
-                <p class="text-sm mt-2">Selamat! Anda telah mencapai target</p>
-            </div>
-        `;
-        return;
-    }
+// Mengecek apakah win rate saat ini sudah memenuhi target
+if (currentWR >= targetWR) {
+    document.getElementById('result').innerHTML = `
+        <div class="p-4 bg-green-600/20 rounded-lg">
+            <p class="text-green-400">Win Rate Anda sudah ${currentWR.toFixed(1)}%</p>
+            <p class="text-sm mt-2">Selamat! Anda telah mencapai target</p>
+        </div>
+    `;
+    return; // Menghentikan eksekusi jika target sudah tercapai
+}
 
     // Hitung jumlah kemenangan tambahan yang diperlukan
     const requiredWins = Math.ceil(
