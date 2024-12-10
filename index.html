@@ -486,25 +486,24 @@ function validateTargetWR() {
         return;
     }
 
-    const currentWR = totalWins;
+    // Menghitung total kemenangan saat ini
+const totalWins = Math.floor((currentWR / 100) * totalMatches);
 
-    if (currentWR >= targetWR) {
-        document.getElementById('result').innerHTML = `
-            <div class="p-4 bg-green-600/20 rounded-lg">
-                <p class="text-green-400">Win Rate Anda sudah ${currentWR.toFixed(1)}%</p>
-                <p class="text-sm mt-2">Selamat! Anda telah mencapai target</p>
-            </div>
-        `;
-        return;
-    }
+// Mengecek apakah win rate saat ini sudah memenuhi target
+if (currentWR >= targetWR) {
+    document.getElementById('result').innerHTML = `
+        <div class="p-4 bg-green-600/20 rounded-lg">
+            <p class="text-green-400">Win Rate Anda sudah ${currentWR.toFixed(1)}%</p>
+            <p class="text-sm mt-2">Selamat! Anda telah mencapai target</p>
+        </div>
+    `;
+    return; // Menghentikan eksekusi jika target sudah tercapai
+}
 
-    // Rumus perhitungan jumlah kemenangan yang dibutuhkan
-    const totalWins = Math.floor((currentWR / 100) * totalMatches);
-
-    // Menghitung jumlah kemenangan yang diperlukan
-    const requiredWins = Math.ceil(
+// Rumus perhitungan jumlah kemenangan yang dibutuhkan
+const requiredWins = Math.ceil(
     (targetWR * totalMatches - 100 * totalWins) / (100 - targetWR)
-    );
+);    
 
 
     document.getElementById('result').innerHTML = `
