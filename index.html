@@ -450,14 +450,14 @@ nav ul {
     
     if (totalWins > totalMatches) {
         document.getElementById('totalWins').value = totalMatches;
-     }
+        }
     }
 
     function validateTargetWR() {
     const targetWR = parseInt(document.getElementById('targetWR').value) || 0;
     if (targetWR > 100) {
         document.getElementById('targetWR').value = 100;
-     } 
+        }
     }
 
     function calculateWinRate() {
@@ -502,7 +502,7 @@ nav ul {
 
     // Perhitungan kemenangan yang dibutuhkan
     const requiredWins = Math.ceil(
-        (targetWR * totalMatches - totalWins * 100) / (100 - targetWR)
+        (totalMatches * (targetWR / 100)) - totalWins
     );
     
     document.getElementById('result').innerHTML = `
@@ -524,7 +524,7 @@ nav ul {
             </div>
         </div>
     `;
-    }
+    }    
     </script>
     
     <script>
