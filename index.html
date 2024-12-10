@@ -447,13 +447,13 @@ nav ul {
     function validateWins() {
     const totalMatches = parseInt(document.getElementById('totalMatches').value) || 0;
     const totalWins = parseInt(document.getElementById('totalWins').value) || 0;
-    
+
     if (totalWins > totalMatches) {
         document.getElementById('totalWins').value = totalMatches;
         }
     }
 
-    function validateTargetWR() {
+function validateTargetWR() {
     const targetWR = parseInt(document.getElementById('targetWR').value) || 0;
     if (targetWR > 100) {
         document.getElementById('targetWR').value = 100;
@@ -486,31 +486,29 @@ nav ul {
         return;
     }
 
-    // Perhitungan win rate saat ini
-    const currentWR = ((totalWins / totalMatches) * 100).toFixed(1);
-    
-    // Jika win rate saat ini sudah melebihi target
-    if (parseFloat(currentWR) >= targetWR) {
+    const currentWR = (totalWins / totalMatches) * 100;
+
+    if (currentWR >= targetWR) {
         document.getElementById('result').innerHTML = `
             <div class="p-4 bg-green-600/20 rounded-lg">
-                <p class="text-green-400">Win Rate Anda sudah ${currentWR}%</p>
+                <p class="text-green-400">Win Rate Anda sudah ${currentWR.toFixed(1)}%</p>
                 <p class="text-sm mt-2">Selamat! Anda telah mencapai target</p>
             </div>
         `;
         return;
     }
 
-    // Perhitungan kemenangan yang dibutuhkan
+    // Rumus perhitungan jumlah kemenangan yang dibutuhkan
     const requiredWins = Math.ceil(
-        (totalMatches * (targetWR / 100)) - totalWins
+        (targetWR * (totalMatches + totalWins) - 100 * totalWins) / (100 - targetWR)
     );
-    
+
     document.getElementById('result').innerHTML = `
         <div class="space-y-2 p-4 bg-yellow-500/20 rounded-lg">
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div class="text-center">
                     <p class="text-sm text-gray-400">Win Rate Saat Ini</p>
-                    <p class="text-xl font-bold text-yellow-400">${currentWR}%</p>
+                    <p class="text-xl font-bold text-yellow-400">${currentWR.toFixed(1)}%</p>
                 </div>
                 <div class="text-center">
                     <p class="text-sm text-gray-400">Target Win Rate</p>
@@ -524,7 +522,8 @@ nav ul {
             </div>
         </div>
     `;
-    }    
+    }
+    
     </script>
     
     <script>
