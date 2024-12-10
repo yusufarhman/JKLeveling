@@ -487,7 +487,8 @@ function calculateWinRate() {
     }
 
     // Hitung current win rate
-    const currentWR = (totalWins / totalMatches) * 100;
+    const currentWR = Math.floor((totalWins / 100) * totalMatches);
+
 
     if (currentWR >= targetWR) {
         document.getElementById('result').innerHTML = `
