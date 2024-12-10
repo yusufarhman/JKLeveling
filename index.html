@@ -500,8 +500,9 @@ function validateTargetWR() {
 
     // Rumus perhitungan jumlah kemenangan yang dibutuhkan
     const requiredWins = Math.ceil(
-        (targetWR * (totalMatches + totalWins) - 100 * totalWins) / (100 - targetWR)
+    (targetWR * totalMatches - 100 * totalWins) / (100 - targetWR)
     );
+
 
     document.getElementById('result').innerHTML = `
         <div class="space-y-2 p-4 bg-yellow-500/20 rounded-lg">
