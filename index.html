@@ -381,86 +381,86 @@ nav ul {
 </section>
 
     <section class="pt-32 pb-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-md mx-auto bg-gray-800 rounded-lg p-6 glow shadow-lg">
-                <!-- Heading and description -->
-                <h2 class="text-3xl font-bold text-center mb-6 text-white">Kalkulator Win Rate</h2>
-                <p class="text-center text-gray-300 mb-8">
-                    Digunakan untuk menghitung total jumlah pertandingan yang harus diambil untuk mencapai target tingkat kemenangan yang diinginkan.
-                </p>
-                <!-- Form fields -->
-                <div class="space-y-4">
-                    <!-- Total Pertandingan Saat Ini -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-2">Total Pertandingan Saat Ini</label>
-                        <input 
-                            type="text" 
-                            inputmode="numeric" 
-                            id="totalMatches" 
-                            class="w-full bg-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-500 outline-none text-white" 
-                            placeholder="Contoh: 223"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                            maxlength="5"
-                        >
-                    </div>
-                    <!-- Total Win Rate Saat Ini -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-2">Total Win Rate Saat Ini</label>
-                        <input 
-                            type="text" 
-                            inputmode="numeric" 
-                            id="totalWins" 
-                            class="w-full bg-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-500 outline-none text-white" 
-                            placeholder="Contoh: 54"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateWins();"
-                            maxlength="5"
-                        >
-                    </div>
-                    <!-- Win Rate Total yang Anda Inginkan -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-2">Win Rate Total yang Anda Inginkan</label>
-                        <input 
-                            type="text" 
-                            inputmode="numeric" 
-                            id="targetWR" 
-                            class="w-full bg-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-500 outline-none text-white" 
-                            placeholder="Contoh: 70"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateTargetWR();"
-                            maxlength="3"
-                        >
-                    </div>
-                    <!-- Submit button -->
-                    <button 
-                        onclick="calculateWinRate()" 
-                        class="w-full bg-yellow-500 hover:bg-yellow-600 py-2 rounded-lg transition-colors text-black font-bold"
+    <div class="container mx-auto px-4">
+        <div class="max-w-md mx-auto bg-gray-800 rounded-lg p-6 glow shadow-lg">
+            <!-- Heading and description -->
+            <h2 class="text-3xl font-bold text-center mb-6 text-white">Kalkulator Win Rate</h2>
+            <p class="text-center text-gray-300 mb-8">
+                Digunakan untuk menghitung total jumlah pertandingan yang harus diambil untuk mencapai target tingkat kemenangan yang diinginkan.
+            </p>
+            <!-- Form fields -->
+            <div class="space-y-4">
+                <!-- Total Pertandingan Saat Ini -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Total Pertandingan Saat Ini</label>
+                    <input 
+                        type="text" 
+                        inputmode="numeric" 
+                        id="totalMatches" 
+                        class="w-full bg-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-500 outline-none text-white" 
+                        placeholder="Contoh: 223"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                        maxlength="5"
                     >
-                        Hitung
-                    </button>
-                    <!-- Result section -->
-                    <div id="result" class="text-center text-lg font-medium text-white mt-4"></div>
                 </div>
+                <!-- Total Win Rate Saat Ini -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Total Kemenangan Saat Ini</label>
+                    <input 
+                        type="text" 
+                        inputmode="numeric" 
+                        id="totalWins" 
+                        class="w-full bg-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-500 outline-none text-white" 
+                        placeholder="Contoh: 54"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateWins();"
+                        maxlength="5"
+                    >
+                </div>
+                <!-- Win Rate Total yang Anda Inginkan -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Win Rate Total yang Anda Inginkan</label>
+                    <input 
+                        type="text" 
+                        inputmode="numeric" 
+                        id="targetWR" 
+                        class="w-full bg-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-500 outline-none text-white" 
+                        placeholder="Contoh: 70"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateTargetWR();"
+                        maxlength="3"
+                    >
+                </div>
+                <!-- Submit button -->
+                <button 
+                    onclick="calculateWinRate()" 
+                    class="w-full bg-yellow-500 hover:bg-yellow-600 py-2 rounded-lg transition-colors text-black font-bold"
+                >
+                    Hitung
+                </button>
+                <!-- Result section -->
+                <div id="result" class="text-center text-lg font-medium text-white mt-4"></div>
             </div>
         </div>
-    </section>
-    
-    <script>
-    function validateWins() {
+    </div>
+</section>
+
+<script>
+function validateWins() {
     const totalMatches = parseInt(document.getElementById('totalMatches').value) || 0;
     const totalWins = parseInt(document.getElementById('totalWins').value) || 0;
 
     if (totalWins > totalMatches) {
         document.getElementById('totalWins').value = totalMatches;
-        }
     }
+}
 
 function validateTargetWR() {
     const targetWR = parseInt(document.getElementById('targetWR').value) || 0;
     if (targetWR > 100) {
         document.getElementById('targetWR').value = 100;
-        }
     }
+}
 
-    function calculateWinRate() {
+function calculateWinRate() {
     const totalMatches = parseInt(document.getElementById('totalMatches').value);
     const totalWins = parseInt(document.getElementById('totalWins').value);
     const targetWR = parseInt(document.getElementById('targetWR').value);
@@ -471,13 +471,8 @@ function validateTargetWR() {
         return;
     }
 
-    if (!totalWins && totalWins !== 0) {
-        document.getElementById('result').innerHTML = '<span class="text-red-500">Masukkan total kemenangan</span>';
-        return;
-    }
-
-    if (!targetWR) {
-        document.getElementById('result').innerHTML = '<span class="text-red-500">Masukkan target win rate</span>';
+    if (totalWins < 0) {
+        document.getElementById('result').innerHTML = '<span class="text-red-500">Total kemenangan tidak boleh negatif</span>';
         return;
     }
 
@@ -486,32 +481,36 @@ function validateTargetWR() {
         return;
     }
 
-    // Menghitung total kemenangan saat ini
-const totalWins = Math.floor((currentWR / 100) * totalMatches);
+    if (!targetWR || targetWR <= 0 || targetWR > 100) {
+        document.getElementById('result').innerHTML = '<span class="text-red-500">Masukkan target win rate yang valid (1-100)</span>';
+        return;
+    }
 
-// Mengecek apakah win rate saat ini sudah memenuhi target
-if (currentWR >= targetWR) {
-    document.getElementById('result').innerHTML = `
-        <div class="p-4 bg-green-600/20 rounded-lg">
-            <p class="text-green-400">Win Rate Anda sudah ${currentWR.toFixed(1)}%</p>
-            <p class="text-sm mt-2">Selamat! Anda telah mencapai target</p>
-        </div>
-    `;
-    return; // Menghentikan eksekusi jika target sudah tercapai
-}
+    // Hitung current win rate
+    const currentWR = (totalWins / totalMatches) * 100;
 
-// Rumus perhitungan jumlah kemenangan yang dibutuhkan
-const requiredWins = Math.ceil(
-    (targetWR * totalMatches - 100 * totalWins) / (100 - targetWR)
-);    
+    if (currentWR >= targetWR) {
+        document.getElementById('result').innerHTML = `
+            <div class="p-4 bg-green-600/20 rounded-lg">
+                <p class="text-green-400">Win Rate Anda sudah ${currentWR.toFixed(2)}%</p>
+                <p class="text-sm mt-2">Selamat! Anda telah mencapai target</p>
+            </div>
+        `;
+        return;
+    }
 
+    // Hitung jumlah kemenangan tambahan yang diperlukan
+    const requiredWins = Math.ceil(
+        (targetWR * totalMatches - 100 * totalWins) / (100 - targetWR)
+    );
 
+    // Tampilkan hasil
     document.getElementById('result').innerHTML = `
         <div class="space-y-2 p-4 bg-yellow-500/20 rounded-lg">
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div class="text-center">
                     <p class="text-sm text-gray-400">Win Rate Saat Ini</p>
-                    <p class="text-xl font-bold text-yellow-400">${currentWR.toFixed(1)}%</p>
+                    <p class="text-xl font-bold text-yellow-400">${currentWR.toFixed(2)}%</p>
                 </div>
                 <div class="text-center">
                     <p class="text-sm text-gray-400">Target Win Rate</p>
@@ -525,9 +524,9 @@ const requiredWins = Math.ceil(
             </div>
         </div>
     `;
-    }
-    
-    </script>
+}
+</script>
+
     
     <script>
         const hamburgerBtn = document.getElementById('hamburger');
